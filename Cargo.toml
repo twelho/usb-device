@@ -28,3 +28,6 @@ test-class-high-speed = []
 name = "test_class_host"
 path = "tests/test_class_host/main.rs"
 harness = false
+
+[dependencies]
+cortex-m-semihosting = "0.3.7"

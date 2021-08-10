@@ -6,6 +6,7 @@ use crate::descriptor::{descriptor_type, lang_id, BosWriter, DescriptorWriter};
 pub use crate::device_builder::{UsbDeviceBuilder, UsbVidPid};
 use crate::endpoint::{EndpointAddress, EndpointType};
 use crate::{Result, UsbDirection};
+use cortex_m_semihosting::hprintln;
 
 /// The global state of the USB device.
 ///
@@ -447,6 +448,8 @@ impl<B: UsbBus> UsbDevice<'_, B> {
 
     fn get_descriptor(config: &Config, classes: &mut ClassList<'_, B>, xfer: ControlIn<B>) {
         let req = *xfer.request();
+
+        hprintln!("get_descriptor triggered").unwrap();
 
         let (dtype, index) = req.descriptor_type_index();
 
